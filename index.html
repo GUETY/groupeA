@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veille Technologique : Les API</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;600&display=swap');
+
+        :root {
+            --primary-color: #0d253f;
+            --secondary-color: #1e88e5;
+            --accent-color: #2979ff;
+            --background-color: #f8f9fa;
+            --card-color: #ffffff;
+            --text-color: #333333;
+            --light-text: #647280;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Raleway', sans-serif;
+            color: var(--text-color);
+            background: var(--background-color);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .card {
+            background: var(--card-color);
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            padding: 40px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--secondary-color);
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin: 25px 0 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--accent-color);
+        }
+
+        p {
+            margin-bottom: 16px;
+            font-size: 1.05rem;
+            color: var(--light-text);
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 15px 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 15px;
+            list-style-type: none;
+        }
+
+        li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 12px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--secondary-color);
+        }
+
+        .intro-quote {
+            font-style: italic;
+            border-left: 3px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 30px 0;
+            color: var(--light-text);
+        }
+
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(30, 136, 229, 0.2), transparent);
+            margin: 30px 0;
+        }
+
+        .conclusion {
+            background: linear-gradient(to right, rgba(13, 37, 63, 0.02), rgba(41, 121, 255, 0.05));
+            padding: 25px;
+            border-radius: 8px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 0.9rem;
+            color: var(--light-text);
+        }
+
+        .api-image {
+            display: block;
+            width: 100%;
+            max-width: 500px;
+            margin: 25px auto;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .api-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .api-item {
+            text-align: center;
+            padding: 20px;
+            background: rgba(41, 121, 255, 0.03);
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .api-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .api-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .api-name {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
+
+        .api-desc {
+            font-size: 0.9rem;
+            color: var(--light-text);
+        }
+
+        figcaption {
+            text-align: center;
+            font-style: italic;
+            color: var(--light-text);
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 30px auto;
+            }
+
+            .card {
+                padding: 25px;
+            }
+
+            h1 {
+                font-size: 2.3rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .api-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Veille Technologique : Les API</h1>
+            <figure>
+                <img src="image.png" alt="Illustration du concept d'API" class="api-image" />
+                <figcaption>Les API comme ponts de communication entre différents services numériques</figcaption>
+            </figure>
+        </div>
+
+        <div class="card">
+            <h2>Introduction</h2>
+            <p>Une API (Application Programming Interface) est un ensemble de règles permettant à des logiciels de
+                communiquer entre eux, créant ainsi un écosystème interconnecté d'applications et de services.</p>
+            <p>Les API sont devenues la pierre angulaire du développement d'applications modernes, facilitant
+                l'intégration entre plateformes web, applications mobiles, solutions cloud et dispositifs IoT.</p>
+
+            <div class="intro-quote">
+                "Les API transforment la façon dont nous concevons, développons et intégrons les technologies
+                numériques, ouvrant la voie à des innovations sans précédent."
+            </div>
+           
+        </div>
+
+        <div class="card">
+            <h2>Pourquoi faire une veille sur les API ?</h2>
+            <ul>
+                <li>Évolution rapide des technologies et émergence constante de nouvelles méthodes d'intégration</li>
+                <li>Adoption de nouvelles normes et protocoles qui redéfinissent les standards de l'industrie</li>
+                <li>Enjeux croissants de sécurité et bonnes pratiques en constante amélioration</li>
+                <li>Opportunités de carrière enrichissantes et perspectives d'innovation pour les entreprises</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>Comment apprendre rapidement les API ?</h2>
+            <ul>
+                <li>Maîtriser les fondamentaux du développement (HTML, CSS, JavaScript, Python, etc.)</li>
+                <li>Comprendre en profondeur les protocoles web essentiels : HTTP, REST, SOAP, GraphQL</li>
+                <li>S'exercer régulièrement avec des API publiques reconnues (OpenWeather, GitHub, Google Maps, Stripe)
+                </li>
+                <li>Utiliser des outils professionnels comme Postman ou Insomnia pour tester et documenter les API</li>
+                <li>Consulter assidûment la documentation officielle et suivre des tutoriels structurés</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>Compétences clés à maîtriser</h2>
+            <div class="section-divider"></div>
+            <ul>
+                <li>Les protocoles de communication modernes (REST, SOAP, GraphQL, WebSocket, gRPC)</li>
+                <li>Les formats d'échange de données standardisés (JSON, XML, Protocol Buffers)</li>
+                <li>Les méthodes d'authentification et d'autorisation sécurisées (OAuth 2.0, JWT, API Keys)</li>
+                <li>Les frameworks et librairies de développement (Express.js, FastAPI, Django REST Framework, Spring
+                    Boot)</li>
+                <li>Les outils de test, documentation et monitoring (Postman, Swagger/OpenAPI, Insomnia, Prometheus)
+                </li>
+            </ul>
+
+            <h3 style="margin-top: 30px; font-size: 1.4rem;">Types d'API populaires</h3>
+            <div class="api-grid">
+                <div class="api-item">
+                    <div class="api-icon">
+                        <img src="image2.png" alt="REST API Icon" />
+                    </div>
+                    <br>
+                    <div class="api-name">REST API</div>
+                    <div class="api-desc">Architectural style utilisant HTTP standard pour créer des API robustes et
+                        simples à utiliser</div>
+                </div>
+                <div class="api-item">
+                    <div class="api-icon">
+                        <img src="image3.png" alt="GraphQL Icon" />
+                    </div>
+                    <div class="api-name">GraphQL</div>
+                    <div class="api-desc">Langage de requête pour API qui permet aux clients de demander exactement les
+                        données dont ils ont besoin</div>
+                </div>
+                <div class="api-item">
+                    <div class="api-icon">
+                        <img src="image4.png" width="150px" alt="WebSocket Icon" />
+                    </div>
+                    <div class="api-name">WebSocket</div>
+                    <div class="api-desc">Protocole permettant une communication bidirectionnelle en temps réel entre
+                        client et serveur</div>
+                </div>
+               
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Ressources utiles pour apprendre</h2>
+            <ul>
+                <li>Plateformes d'apprentissage en ligne : Udemy, Coursera, OpenClassrooms, Pluralsight</li>
+                <li>Documentation officielle des API populaires et leurs guides d'implémentation</li>
+                <li>Tutoriels vidéo sur YouTube et blogs spécialisés comme Dev.to, Medium ou freeCodeCamp</li>
+                <li>Forums et communautés professionnelles (Stack Overflow, Reddit r/webdev, GitHub Discussions)</li>
+                <li>Webinaires et conférences techniques (API World, APIDays, REST-Fest)</li>
+            </ul>
+        </div>
+
+        <div class="card conclusion">
+            <h2>Conclusion</h2>
+            <p>La veille technologique sur les API est aujourd'hui indispensable pour tout développeur souhaitant rester
+                compétitif dans un écosystème numérique en constante évolution.</p>
+            <p>Pratiquer régulièrement l'intégration d'API variées et explorer les nouvelles tendances du domaine sont
+                des habitudes à cultiver pour parfaire ses compétences.</p>
+            <p>Rejoindre des communautés de pratique et échanger avec d'autres développeurs permet non seulement
+                d'accélérer son apprentissage, mais aussi de découvrir des perspectives innovantes sur l'utilisation des
+                API.</p>
+        </div>
+
+        <div class="card">
+            
+            <img src="image1.png" width="800px"  alt="API" />
+     
+        </div>
+        
+
+        <div class="footer">
+            <p>© 2025 · Veille Technologique sur les API · Tous droits réservés</p>
+        </div>
+    </div>
+</body>
+
+</html>
